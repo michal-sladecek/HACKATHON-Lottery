@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from .models import UserData,NakupnyPlan, LoteriaModel
 from datetime import datetime
-from .forms import BootstrapAuthenticationForm, TiketForm
+from .forms import BootstrapAuthenticationForm
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
