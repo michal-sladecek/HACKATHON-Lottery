@@ -1,0 +1,15 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="centering jumbotron" style="background:rgba(0,0,0,0)">
+    <h1>Nakúpte si tikety</h1>
+    <p class="lead">Vyberte si z naších ponúk</p>
+</div>
+{% for ponuka in plany %}
+<div class="centering row">
+    <h1><a href="{% url 'kupujem'%}?id={{ ponuka.pk }}">{{ ponuka.pocetTiketov }} za {{ ponuka.cena }} €</a></h1>
+</div>
+{% endfor %}
+<p><a href="{% url 'home' %}">Späť</a></p>
+{% endblock %}

@@ -26,7 +26,7 @@ urlpatterns = [
     url(r'^api/pocetTiketov$',app.views.pocetTiketov,name='pocetTiketov'),
     url(r'^kupujem$',app.views.kupujem,name='kupujem'),
     url(r'^podanie$', app.views.podajTiket, name='podaj'),
-    url(r'^historiaZrebovani$', app.views.historiaZrebovani$, name='historiaZrebovani$'),
+    url(r'^historiaZrebovani$', app.views.historiaZrebovani, name='historiaZrebovani$'),
 
     url(r'^login/$',
         django.contrib.auth.views.login,
