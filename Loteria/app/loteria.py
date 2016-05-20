@@ -20,6 +20,10 @@ def timeOfNextLottery():
     return (dalsiaLoteria - epoch).total_seconds() * 1000.0
 
 def timeToNextLottery():
+    epoch = datetime.utcfromtimestamp(0)
+    return (dalsiaLoteria - datetime.now()).total_seconds() * 1000.0
+
+def timeToNextLottery():
     if beziLoteria==True:
         return 0
     return dalsiaLoteria-datetime.now()
