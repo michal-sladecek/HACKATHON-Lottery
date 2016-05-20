@@ -27,9 +27,10 @@ def landingPage(request):
             'year':datetime.now().year,
         }
     )
-@login_required(redirect_field_name = reverse_lazy('landingPage'))
+
+@login_required(login_url = reverse_lazy('landingPage'))
 def home(request):
-    return render(request,'home.html')
+    return render(request,'app/home.html')
 
 def contact(request):
     """Renders the contact page."""
