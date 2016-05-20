@@ -1,19 +1,19 @@
 {% block loginform %}
 
-<section id="loginForm">
+<section id="loginForm" >
     <form action="{% url 'login' %}" method="post" class="form-horizontal">
         {% csrf_token %}
         <hr />
         <div class="form-group">
-            <label for="id_username" class="control-label">User name</label>
+            <label for="id_username" class="control-label"></label>
                 {{ form.username }}
         </div>
         <div class="form-group">
-            <label for="id_password" class="control-label">Password</label>
+            <label for="id_password" class="control-label"></label>
                 {{ form.password }}
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="">
                 <input type="hidden" name="next" value="/" />
                 <input type="submit" value="Log in" class="btn btn-default" />
             </div>
