@@ -10,10 +10,12 @@ jichichi
 <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
 
 <script>
-$.get("{% url 'apiGet' %}", function( data ) {
-  $( ".result" ).html( data );
-    console.log(data);
-  alert( "Load was performed." );
-});
+setInterval(function(){
+    $.get("{% url 'apiGet' %}", function( data ) {
+      $( ".result" ).html( data );
+        console.log(data);
+        console.log("aha");
+    });
+},1000)
 </script>
 {% endblock %}
