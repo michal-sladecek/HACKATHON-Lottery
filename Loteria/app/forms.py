@@ -18,7 +18,3 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                widget=forms.PasswordInput({
                                    'class': 'centered form-control',
                                    'placeholder':'Password'}))
-class TiketForm(forms.ModelForm):
-    class Meta:
-        model=PodanyTicketModel
-        fields = ['podaneCisla']

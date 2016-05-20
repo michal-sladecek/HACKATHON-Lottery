@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpRequest,HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
-from .models import UserData,NakupnyPlan
+from .models import UserData,NakupnyPlan, LoteriaModel
 from datetime import datetime
 from .forms import BootstrapAuthenticationForm, TiketForm
 from django.core.urlresolvers import reverse_lazy
@@ -104,7 +104,9 @@ def podajTiket(request):
     form = TiketForm()
     print(request.POST)
     return render(request, "app/podanieTiketu.html",{'form':form})
-    
+def historiaZrebovani(request):
+    zrebovania = LoteriaModel.objects.all().order_by('casZrebovania')[:10]
+    return render(request,"app/historiaZrebovani.html",{"zrebovania":zrebovania})
 # if request.is_ajax():
 def kupujem(request):
     if 'id' in request.GET:
