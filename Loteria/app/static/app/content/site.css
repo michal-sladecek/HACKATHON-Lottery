@@ -39,4 +39,12 @@ input[type="checkbox"].input-validation-error {
 
 .validation-summary-valid {
     display: none;
+
+.centering {
+  text-align: center;
+}
+
+.centered {
+    margin: 0 auto;
+    display: block;
 }
