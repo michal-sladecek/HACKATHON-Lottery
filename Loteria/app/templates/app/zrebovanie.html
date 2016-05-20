@@ -13,7 +13,12 @@
 <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
 
 <script>
-zreb=$("#zreb")
+    function zrebOut(what,index){
+        zreb.append("<div class='zreb' id='zreb"+index+"' style='display:none'><b>"+what+"</b></div>");
+                    $("#zreb"+index).fadeIn(500);
+                    actualNumber++
+    }
+zreb=$("#zreb");
 var actualNumber=0;
 setInterval(function(){
     $.get("{% url 'apiGet' %}", function( data ) {
@@ -24,15 +29,13 @@ setInterval(function(){
 
             if(data[2].vyzrebovaneCisla.length>actualNumber+1){
                 for(var i=0;i<data[2].vyzrebovaneCisla.length;i++){
-                    zreb.append("<div class='zreb'><b>"+data[2].vyzrebovaneCisla[i]+"</b></div>");
-                    actualNumber++
+                    zrebOut(data[2].vyzrebovaneCisla[i],i);
                 }
             }
         console.log(actualNumber);
         lastNumber=data[2].vyzrebovaneCisla[actualNumber];
         if(lastNumber!=undefined) {
-            zreb.append("<div class='zreb'><b>"+lastNumber+"</b></div>");
-            actualNumber++
+            zrebOut(lastNumber,actualNumber);
         }
                 //[{"prebiehaLoteria": true}, {"zrebovanieZacalo": 1463748548141.614}, {"vyzrebovaneCisla": [7, 4, 1, 10]}
                 //[{"prebiehaLoteria": false}, {"zrebovanieZacne": 1463748788141.614}, {"casDoZrebovania": {"hours": 0, "seconds": 3, "minutes": 0}}]
