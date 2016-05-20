@@ -30,7 +30,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app\forms.py" />
+    <Compile Include="app\konstanty.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\loteria.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\models.py" />
+    <Compile Include="app\tickets.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\tests.py" />
     <Compile Include="app\views.py" />
     <Compile Include="app\__init__.py" />
