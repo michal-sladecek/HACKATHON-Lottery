@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^index/$',app.views.landingPage, name='landingPage'),
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^about', app.views.about, name='about'),
+    url(r'^api/currentState$', app.views.currentLotteryState, name='apiGet'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {

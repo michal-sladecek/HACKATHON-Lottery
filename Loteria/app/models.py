@@ -13,6 +13,10 @@ class LoteriaModel(models.Model):
     vyzrebovaneCisla = models.CharField(max_length=50,validators=[int_list_validator()])
     zrebovanaSuma = models.IntegerField()
 
+    def __str__(self):
+        return str(self.casZrebovania)
+
+
 class UserData(models.Model):
     pocetTicketov = models.IntegerField()
     user = models.OneToOneField(User)
