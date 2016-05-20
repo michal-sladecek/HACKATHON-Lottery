@@ -8,17 +8,12 @@ jichichi
 
     {% load staticfiles %}
 <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
-<script>
-    window.onbeforeunload=function () {
-        alert("koberec");
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.onreadystatechange = function() {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-        };
-        xmlHttp.open("GET", "/index.html", true); // true for asynchronous
-        xmlHttp.send(null);
 
-    }
+<script>
+$.get("{% url 'apiGet' %}", function( data ) {
+  $( ".result" ).html( data );
+    console.log(data);
+  alert( "Load was performed." );
+});
 </script>
 {% endblock %}
