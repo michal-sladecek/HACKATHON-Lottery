@@ -36,9 +36,9 @@ def vytvorLoteriu(suma):
         zrebujCislo(nevyzrebovaneCisla)
     novaLoteria.vyzrebovaneCisla = ','.join(map(str, vyzrebovaneCisla))
     novaLoteria.save()
+    time.sleep(2)
     global dalsiaLoteria
     dalsiaLoteria = dalsiaLoteria+timedelta(minutes=WAIT_TIME_FOR_LOTTERY)
-    time.sleep(2)
     beziLoteria = False
 
 def zrebujCislo(nevyzrebovaneCisla):

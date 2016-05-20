@@ -18,6 +18,7 @@ def podajTicket(cisla, user):
         p.podaneCisla = ','.join(map(str, cisla)) 
         p.loteria = dalsiaLoteria
         p.save()
+    UseData.objects.get(user=user).pocetTicketov -= 1
     return True
 
 def mozePodatTiket(user):
