@@ -34,6 +34,7 @@ def vytvorLoteriu(suma):
     novaLoteria.save()
     global dalsiaLoteria
     dalsiaLoteria = dalsiaLoteria+timedelta(minutes=WAIT_TIME_FOR_LOTTERY)
+    time.sleep(2)
     beziLoteria = False
 
 def zrebujCislo(nevyzrebovaneCisla):
