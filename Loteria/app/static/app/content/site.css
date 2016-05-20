@@ -48,12 +48,17 @@ input[type="checkbox"].input-validation-error {
 html,body{
     height:100%;
     color:white;
+    font-size: large;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .zreb{
-    width:30px;
-    height:30px;
+    width:60px;
+    height:60px;
     background-color: yellow;
-    border-radius: 15px;
+    border-radius: 30px;
     color: black;
     float: left;
+    padding: 12px;
+    margin:5px;
+    font-size: x-large;
 }

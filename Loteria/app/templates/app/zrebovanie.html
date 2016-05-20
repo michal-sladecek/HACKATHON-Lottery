@@ -1,7 +1,9 @@
 {% block zrebovanie %}
+<h2>Žrebovanie o <b id="odpocet">0</b> sekúnd</h2>
+<div class="container-fluid" id="zreb"></div>
 
-<div id="zreb">jichichi</div>
-<div id="odpocet"></div>
+
+
 
 {% endblock %}
 
@@ -22,22 +24,23 @@ setInterval(function(){
 
             if(data[2].vyzrebovaneCisla.length>actualNumber+1){
                 for(var i=0;i<data[2].vyzrebovaneCisla.length;i++){
-                    zreb.append("<div class='zreb'>" + data[2].vyzrebovaneCisla[i] + "</div>");
+                    zreb.append("<div class='zreb'><b>"+data[2].vyzrebovaneCisla[i]+"</b></div>");
                     actualNumber++
                 }
             }
         console.log(actualNumber);
         lastNumber=data[2].vyzrebovaneCisla[actualNumber];
         if(lastNumber!=undefined) {
-            zreb.append("<div class='zreb'>" + lastNumber + "</div>");
+            zreb.append("<div class='zreb'><b>"+lastNumber+"</b></div>");
             actualNumber++
         }
                 //[{"prebiehaLoteria": true}, {"zrebovanieZacalo": 1463748548141.614}, {"vyzrebovaneCisla": [7, 4, 1, 10]}
                 //[{"prebiehaLoteria": false}, {"zrebovanieZacne": 1463748788141.614}, {"casDoZrebovania": {"hours": 0, "seconds": 3, "minutes": 0}}]
         }
         else{
+            zreb[0].innerHTML="";
             actualNumber=0;
-            $("#odpocet").innerHTML=(Math.floor((data[1].zrebovanieZacne-Date.now())/1000))
+            $("#odpocet")[0].innerHTML=(Math.floor((data[1].zrebovanieZacne-Date.now())/1000))
         }
     });
 
