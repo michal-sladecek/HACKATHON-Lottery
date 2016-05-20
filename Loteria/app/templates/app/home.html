@@ -4,21 +4,35 @@
 
 <div class="centering jumbotron" style="background:rgba(0,0,0,0)">
     <h1>Lotéria</h1>
-    <p class="lead">Výborne</p>
 </div>
 
 <div class="centering row">
     <div class="col-md-4">
-      <h2>Žrebovanie</h2>
       {% include "app/zrebovanie.html" %}
     </div>
     <div class="col-md-4">
     </div>
     <div class="col-md-4">
-        <h2>Máte XXXX tiketov</h2>
+        <h2 id="pocetTik">Máte XXXX tiketov</h2>
         <h2><a href="{% url 'buy' %}">Nakúpte tikety</a></h2>
         <h2>Podajte si tiket</h2>
     </div>
 </div>
+<script>
+$(document).ready(function(){
+    $.get("{% url 'pocetTiketov' %}", function( data ) {
+        data=JSON.parse(data);
+        pocetTiketov = data[0].pocetTiketov;
+        $('#pocetTik')[0].innerHTML = "Máte "+pocetTiketov+" tiketov";
+    });
+    });
+setInterval(function(){
+    $.get("{% url 'pocetTiketov' %}", function( data ) {
+        data=JSON.parse(data);
+        pocetTiketov = data[0].pocetTiketov;
+        $('#pocetTik')[0].innerHTML = "Máte "+pocetTiketov+" tiketov";
+    });
+    },5000);
 
+</script>
 {% endblock %}

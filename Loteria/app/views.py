@@ -102,7 +102,6 @@ def about(request):
 def podajTiket(request):
     return render(request,'app/home.html')
 # if request.is_ajax():
-
 def kupujem(request):
     if 'id' in request.GET:
        id = request.GET['id']       
