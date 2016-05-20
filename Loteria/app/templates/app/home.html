@@ -9,23 +9,15 @@
 
 <div class="centering row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Django gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://www.djangobook.com/en/2.0/index.html">Learn more &raquo;</a></p>
+      <h2>Žrebovanie</h2>
+      {% include "app/zrebovanie.html" %}
     </div>
     <div class="col-md-4">
-        <h2>Prihlásenie</h2>
-        <p>Od bohatstva vás delí len tento formulár</p>
-        {% include "app/loginform.html" %}
     </div>
     <div class="col-md-4">
-        <h2>Akcia! Len Dnes! </h2>
-        <p>Prvých 5 tiketov je zdarma!</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
+        <h2>Máte XXXX tiketov</h2>
+        <h2><a href="{% url 'buy' %}">Nakúpte tikety</a></h2>
+        <h2>Podajte si tiket</h2>
     </div>
 </div>
 

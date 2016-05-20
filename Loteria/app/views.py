@@ -102,8 +102,15 @@ def about(request):
 def podajTiket(request):
     return render(request,'app/home.html')
 # if request.is_ajax():
-        
-        
+
+def kupujem(request):
+    if 'id' in request.GET:
+       id = request.GET['id']       
+       plan = NakupnyPlan.objects.get(pk=id)
+       data = UserData.objects.get(user=request.user)
+       data.pocetTicketov += plan.pocetTiketov
+       data.save()
+    return HttpResponseRedirect(reverse_lazy('home'))
 def nakupTikety(request):
     plany = NakupnyPlan.objects.all()
     return render(request,'app/buy.html',{
