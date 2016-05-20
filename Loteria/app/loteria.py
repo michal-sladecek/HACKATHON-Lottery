@@ -11,6 +11,10 @@ dalsiaLoteria = datetime.now()
 def getCisla():
     return vyzrebovaneCisla
 
+def timeOfNextLottery():
+    epoch = datetime.utcfromtimestamp(0)
+    return (dalsiaLoteria - epoch).total_seconds() * 1000.0
+
 def timeToNextLottery():
     if beziLoteria==True:
         return 0
@@ -34,6 +38,7 @@ def vytvorLoteriu(suma):
     novaLoteria.save()
     global dalsiaLoteria
     dalsiaLoteria = dalsiaLoteria+timedelta(minutes=WAIT_TIME_FOR_LOTTERY)
+    time.sleep(2)
     beziLoteria = False
 
 def zrebujCislo(nevyzrebovaneCisla):
