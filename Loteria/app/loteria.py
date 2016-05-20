@@ -5,9 +5,8 @@ from random import choice
 from datetime import *
 import time
 vyzrebovaneCisla = []
-nevyzrebovaneCisla = []
 beziLoteria=False
-dalsialoteria = time.time()
+dalsiaLoteria = datetime.now()
 
 def getCisla():
     return vyzrebovaneCisla
@@ -15,35 +14,40 @@ def getCisla():
 def timeToNextLottery():
     if beziLoteria==True:
         return 0
-    return dalsiaLoteria-time.time()
+    return dalsiaLoteria-datetime.now()
     
+def prebiehaLoteria():
+    return beziLoteria
     
 def vytvorLoteriu(suma):
-    print("ZREBUJEM")
     novaLoteria = LoteriaModel()
     novaLoteria.zrebovanaSuma = suma
+    global vyzrebovaneCisla
+    global beziLoteria
+    vyzrebovaneCisla = []
     nevyzrebovaneCisla = [x for x in range(MIN_CISLO_NA_TIKETE,MAX_CISLO_NA_TIKETE+1)]
     beziLoteria = True
     for x in range(POCET_CISEL_NA_TIKETE):
         time.sleep(WAIT_TIME_FOR_NUMBER)
-        zrebujCislo()
+        zrebujCislo(nevyzrebovaneCisla)
     novaLoteria.vyzrebovaneCisla = ','.join(map(str, vyzrebovaneCisla))
     novaLoteria.save()
+    global dalsiaLoteria
     dalsiaLoteria = dalsiaLoteria+timedelta(minutes=WAIT_TIME_FOR_LOTTERY)
     beziLoteria = False
 
-def zrebujCislo():
+def zrebujCislo(nevyzrebovaneCisla):
     cislo = choice(nevyzrebovaneCisla)
     vyzrebovaneCisla.append(cislo)
     nevyzrebovaneCisla.remove(cislo)
 
 def mam_zrebovat():
-    print("MAM ZREBOVAT?")
-    if time.time() > dalsialoteria and not beziLoteria:
-        vytvorLoteriu(JACKPOT)     
+    while True:
+        if datetime.now() > dalsiaLoteria and not beziLoteria:
+            vytvorLoteriu(JACKPOT)     
 
 def startup():
-    print("AAAAAAAAAA")
     t1 = threading.Thread(target=mam_zrebovat)
     t1.start()
+    print("Startup was succesful")
     

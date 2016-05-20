@@ -12,14 +12,13 @@ from .forms import BootstrapAuthenticationForm
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from django.http import JsonResponse
 
 import json
 import time
 
-from .loteria import startup
-
 from .konstanty import *
-
+from .loteria import prebiehaLoteria, getCisla, timeToNextLottery
 
 def createUserData(user):
     try:
@@ -30,10 +29,22 @@ def createUserData(user):
         x.pocetTicketov = 5
         x.save()
 
-        
+def currentLotteryState(request): 
+    sprava = []       
+    if prebiehaLoteria():
+        sprava.append({"prebiehaLoteria": True})
+        sprava.append({"vyzrebovaneCisla": getCisla()})
+    else:
+        sprava.append({"prebiehaLoteria": False})
+        timed = timeToNextLottery()
+        s = timed.seconds
+        hours, remainder = divmod(s, 3600)
+        minutes,seconds = divmod(remainder,60)
+        sprava.append({"casDoZrebovania": {"hours":hours, "minutes":minutes, "seconds":seconds }})
+    returnVal = json.dumps(sprava)
+    return JsonResponse(returnVal)
 
 def landingPage(request):
-    startup()
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
     if request.user.is_authenticated():
@@ -49,10 +60,9 @@ def landingPage(request):
             'year':datetime.now().year,
         }
     )
-
 @login_required(login_url = reverse_lazy('landingPage'))
 def home(request):
-    print(time.time())
+    currentLotteryState(request)
     createUserData(request.user)
     return render(request,'app/home.html')
 def contact(request):
