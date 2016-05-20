@@ -7,11 +7,9 @@ import time
 vyzrebovaneCisla = []
 beziLoteria=False
 dalsiaLoteria = datetime.now()
-novaLoteria=LoteriaModel()
-
+novaLoteria = LoteriaModel()
 def loteria():
     return novaLoteria
-
 def getCisla():
     return vyzrebovaneCisla
 
@@ -33,7 +31,6 @@ def prebiehaLoteria():
     
 def vytvorLoteriu(suma):
     global novaLoteria
-    novaLoteria.zrebovanaSuma = suma
     global vyzrebovaneCisla
     global beziLoteria
     vyzrebovaneCisla = []
@@ -49,6 +46,7 @@ def vytvorLoteriu(suma):
     dalsiaLoteria = dalsiaLoteria+timedelta(minutes=WAIT_TIME_FOR_LOTTERY)
     beziLoteria = False
     novaLoteria = LoteriaModel()
+    novaLoteria.save()
 
 def zrebujCislo(nevyzrebovaneCisla):
     cislo = choice(nevyzrebovaneCisla)

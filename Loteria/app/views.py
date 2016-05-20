@@ -74,6 +74,12 @@ def landingPage(request):
 @login_required(login_url = reverse_lazy('landingPage'))
 def home(request):
     createUserData(request.user)
+    if 'numbers' in request.POST:
+        numbers = request.POST['numbers']
+        print(numbers)
+        numbers = [int(x) for x in numbers.split(',')]
+        from .tickets import podajTicket
+        print(podajTicket(numbers,request.user))
     return render(request,'app/home.html')
 def contact(request):
     """Renders the contact page."""
@@ -87,6 +93,8 @@ def contact(request):
             'year':datetime.now().year,
         }
     )
+def zrebovanie(request):
+    return render(request,"app/zrebovanie.html")
 def about(request):
     """Renders the about page."""
     assert isinstance(request, HttpRequest)

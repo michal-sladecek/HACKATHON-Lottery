@@ -11,7 +11,6 @@ from django.core.validators import int_list_validator
 class LoteriaModel(models.Model):
     casZrebovania = models.DateTimeField(auto_now_add=True)
     vyzrebovaneCisla = models.CharField(max_length=50,validators=[int_list_validator()])
-    zrebovanaSuma = models.IntegerField()
 
     def __str__(self):
         return str(self.casZrebovania)
