@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<div class="jumbotron">
+<div class="centering jumbotron">
     <h1>Lotéria</h1>
-    <p class="lead">Keď máte málo peňazí</p>
+    <p class="lead">Výborne</p>
     <p><a href="https://www.djangoproject.com/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
 </div>
 
-<div class="row">
+<div class="centering row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
@@ -19,9 +19,10 @@
         <p><a class="btn btn-default" href="http://www.djangobook.com/en/2.0/index.html">Learn more &raquo;</a></p>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
+        <h2>Prihlásenie</h2>
+        <p>Od bohatstva vás delí len tento formulár</p>
+        {% include "app/loginform.html" %}
+
     </div>
     <div class="col-md-4">
         <h2>Microsoft Azure</h2>
