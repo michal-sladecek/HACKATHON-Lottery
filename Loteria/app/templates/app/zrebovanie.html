@@ -1,6 +1,7 @@
 {% block zrebovanie %}
 
-jichichi
+<div id="zreb">jichichi</div>
+
 
 {% endblock %}
 
@@ -10,12 +11,34 @@ jichichi
 <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
 
 <script>
+zreb=$("#zreb")
+var actualNumber=0;
 setInterval(function(){
     $.get("{% url 'apiGet' %}", function( data ) {
-      $( ".result" ).html( data );
-        console.log(data);
-        console.log("aha");
+        data=JSON.parse(data);
+        console.log(data[0].prebiehaLoteria);
+
+        if(data[0].prebiehaLoteria){
+            if(data[2].vyzrebovaneCisla.length>actualNumber){
+                for(i=0;i<data[2].vyzrebovaneCisla.length;i++){
+                    zreb.append("<div class='zreb'>" + lastNumber + "</div>");
+                    actualNumber++
+                }
+            }
+        lastNumber=data[2].vyzrebovaneCisla[actualNumber];
+        if(lastNumber!=undefined) {
+            zreb.append("<div class='zreb'>" + lastNumber + "</div>");
+            actualNumber++
+        }
+                //[{"prebiehaLoteria": true}, {"zrebovanieZacalo": 1463748548141.614}, {"vyzrebovaneCisla": [7, 4, 1, 10]}
+                //[{"prebiehaLoteria": false}, {"zrebovanieZacne": 1463748788141.614}, {"casDoZrebovania": {"hours": 0, "seconds": 3, "minutes": 0}}]
+        }
+        else{
+            actualNumber=0;
+            zreb[0].innerHTML=(Math.floor((data[1].zrebovanieZacne-Date.now())/1000))
+        }
     });
+
 },1000)
 </script>
 {% endblock %}
