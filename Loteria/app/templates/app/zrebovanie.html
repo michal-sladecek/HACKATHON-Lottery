@@ -1,6 +1,6 @@
 {% block zrebovanie %}
 <h2>Žrebovanie o <b id="odpocet">0</b> sekúnd</h2>
-<div class="container-fluid" id="zreb"></div>
+<div class="container-fluid" id="zreb" style="min-height: 240px"></div>
 
 
 
@@ -41,9 +41,13 @@ setInterval(function(){
                 //[{"prebiehaLoteria": false}, {"zrebovanieZacne": 1463748788141.614}, {"casDoZrebovania": {"hours": 0, "seconds": 3, "minutes": 0}}]
         }
         else{
-            zreb[0].innerHTML="";
             actualNumber=0;
+
             $("#odpocet")[0].innerHTML=(Math.floor((data[2].casDoZrebovania2)/1000))
+            if(Math.floor((data[2].casDoZrebovania2)/1000)<3){
+                zreb[0].innerHTML="";
+            }
+
         }
         offset=(offset+((data[1].zrebovanieZacalo||data[1].zrebovanieZacne)-Date.now()))%1000;
         console.log(offset);
