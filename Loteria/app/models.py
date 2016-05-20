@@ -26,3 +26,8 @@ class PodanyTicketModel(models.Model):
     loteria = models.ForeignKey(LoteriaModel)
     podaneCisla = models.CharField(max_length=50,validators=[int_list_validator()])
     user = models.ForeignKey(User)
+
+class NakupnyPlan(models.Model):
+    cena = models.DecimalField(max_digits=10,decimal_places=2)
+    pocetTiketov = models.IntegerField()
+    text = models.CharField(max_length=200)
