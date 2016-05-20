@@ -18,7 +18,7 @@ import json
 import time
 
 from .konstanty import *
-from .loteria import prebiehaLoteria, getCisla, timeToNextLottery
+from .loteria import prebiehaLoteria, getCisla, timeToNextLottery, timeOfNextLottery
 
 def createUserData(user):
     try:
@@ -33,6 +33,7 @@ def currentLotteryState(request):
     sprava = []       
     if prebiehaLoteria():
         sprava.append({"prebiehaLoteria": True})
+        sprava.append({"zrebovanieZacalo": timeOfNextLottery()})
         sprava.append({"vyzrebovaneCisla": getCisla()})
     else:
         sprava.append({"prebiehaLoteria": False})
@@ -40,6 +41,7 @@ def currentLotteryState(request):
         s = timed.seconds
         hours, remainder = divmod(s, 3600)
         minutes,seconds = divmod(remainder,60)
+        sprava.append({"zrebovanieZacne": timeOfNextLottery()})
         sprava.append({"casDoZrebovania": {"hours":hours, "minutes":minutes, "seconds":seconds }})
     returnVal = json.dumps(sprava)
     return JsonResponse(returnVal,safe=False)
