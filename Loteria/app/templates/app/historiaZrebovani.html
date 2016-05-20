@@ -6,10 +6,12 @@
     <h1>Nakúpte si tikety</h1>
     <p class="lead">Vyberte si z naších ponúk</p>
 </div>
-<table></table>
+
+<table class="table table-striped table-bordered ">
 {% for zrebovanie in zrebovania %}
-<tr><td>{{ zrebovanie.casZrebovania}}</td>
-    <td> {{ zrebovanie.vyzrebovaneCisla }}</td>
+<tr>
+    <td>{{ zrebovanie.casZrebovania}}</td>
+    <td>{{ zrebovanie.vyzrebovaneCisla }}</td>
 </tr><br/>
 {% endfor %}
 </table>
