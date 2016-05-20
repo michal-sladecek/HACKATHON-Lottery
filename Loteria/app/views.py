@@ -101,11 +101,10 @@ def about(request):
     )
 @login_required(login_url = reverse_lazy('landingPage'))
 def podajTiket(request): 
-    form = TiketForm()
     print(request.POST)
-    return render(request, "app/podanieTiketu.html",{'form':form})
+    return render(request, "app/podanieTiketu.html")
 def historiaZrebovani(request):
-    zrebovania = LoteriaModel.objects.all().order_by('casZrebovania')[:10]
+    zrebovania = LoteriaModel.objects.all().order_by('-casZrebovania')[:10]
     return render(request,"app/historiaZrebovani.html",{"zrebovania":zrebovania})
 # if request.is_ajax():
 def kupujem(request):

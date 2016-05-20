@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\templates\app\buy.html" />
+    <Content Include="app\templates\app\historiaZrebovani.html" />
     <Content Include="app\templates\app\home.html" />
     <Content Include="app\templates\app\loginform.html" />
     <Content Include="app\templates\app\podanieTiketu.html" />
