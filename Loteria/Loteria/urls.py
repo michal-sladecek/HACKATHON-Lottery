@@ -21,6 +21,9 @@ urlpatterns = [
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^about', app.views.about, name='about'),
     url(r'^api/currentState$', app.views.currentLotteryState, name='apiGet'),
+    url(r'^buy$', app.views.nakupTikety, name='buy'),
+    url(r'^api/podajTiket$',app.views.podajTiket,name='podajTiket'),
+    url(r'^api/pocetTiketov$',app.views.pocetTiketov,name='pocetTiketov'),
     url(r'^login/$',
         django.contrib.auth.views.login,
         {

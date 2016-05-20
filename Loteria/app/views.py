@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpRequest,HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
-from .models import UserData
+from .models import UserData,NakupnyPlan
 from datetime import datetime
 from .forms import BootstrapAuthenticationForm
 from django.core.urlresolvers import reverse_lazy
@@ -44,6 +44,14 @@ def currentLotteryState(request):
         sprava.append({"zrebovanieZacne": timeOfNextLottery()})
         sprava.append({"casDoZrebovania": {"hours":hours, "minutes":minutes, "seconds":seconds }})
     returnVal = json.dumps(sprava)
+    return JsonResponse(returnVal,safe=False)
+
+@login_required(login_url = reverse_lazy('landingPage'))
+def pocetTiketov(request):
+    sprava = []
+    user = request.user
+    print(UserData.objects.get(user=user).pocetTicketov)
+    returnVal = json.dumps([{"pocetTiketov": UserData.objects.get(user=user).pocetTicketov}])
     return JsonResponse(returnVal,safe=False)
 
 def landingPage(request):
@@ -90,4 +98,15 @@ def about(request):
             'year':datetime.now().year,
         }
     )
-
+@login_required(login_url = reverse_lazy('landingPage'))
+def podajTiket(request):
+    return render(request,'app/home.html')
+# if request.is_ajax():
+        
+        
+def nakupTikety(request):
+    plany = NakupnyPlan.objects.all()
+    return render(request,'app/buy.html',{
+        'plany': plany,
+    }
+    )

@@ -2,6 +2,7 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from .models import PodanyTicketModel, UserData
 from .konstanty import *
+from .loteria import loteria
 
 def podajTicket(cisla, user):
     if not isinstance(user,User):
@@ -16,10 +17,11 @@ def podajTicket(cisla, user):
     if mozePodatTiket(user):
         p = PodanyTicketModel(user=user)
         p.podaneCisla = ','.join(map(str, cisla)) 
-        p.loteria = dalsiaLoteria
+        p.loteria = loteria()
         p.save()
-    UseData.objects.get(user=user).pocetTicketov -= 1
-    return True
+        UseData.objects.get(user=user).pocetTicketov -= 1
+        return True
+    return False
 
 def mozePodatTiket(user):
     data = UserData.objects.get(user=user)
