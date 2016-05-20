@@ -6,15 +6,18 @@ from django.shortcuts import render
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
+from .forms import BootstrapAuthenticationForm
 
 
 def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
+    form = BootstrapAuthenticationForm()
     return render(
         request,
         'app/index.html',
         {
+            'form' : form,
             'title':'Home Page',
             'year':datetime.now().year,
         }
