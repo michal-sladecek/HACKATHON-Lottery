@@ -18,7 +18,7 @@
 
 <body>
     <div class="navbar navbar-default navbar-fixed-top" style="background: rgba(0,0,0,0)">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -45,7 +45,12 @@
             <p>&copy; {{ year }} - My Django Application</p>
         </footer>
     </div>
-{% block scripts %}{% endblock %}
+{% block scripts %}
+<script>
+
+$.backstretch("{% static 'app/images/roulette.jpg' %}");
+</script>
+{% endblock %}
 
 </body>
 </html>
