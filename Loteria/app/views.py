@@ -8,7 +8,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 from .models import UserData,NakupnyPlan
 from datetime import datetime
-from .forms import BootstrapAuthenticationForm
+from .forms import BootstrapAuthenticationForm, TiketForm
 from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -100,8 +100,11 @@ def about(request):
         }
     )
 @login_required(login_url = reverse_lazy('landingPage'))
-def podajTiket(request):
-    return render(request,'app/home.html')
+def podajTiket(request): 
+    form = TiketForm()
+    print(request.POST)
+    return render(request, "app/podanieTiketu.html",{'form':form})
+    
 # if request.is_ajax():
 def kupujem(request):
     if 'id' in request.GET:

@@ -1,0 +1,9 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+<form action="." method="post" class="form-horizontal">
+    {% csrf_token %}
+    {{ form }}
+</form>
+<p><a href="{% url 'home' %}">Späť</a></p>
+{% endblock %}
