@@ -20,10 +20,11 @@
     }
 zreb=$("#zreb");
 var actualNumber=0;
+var offset=0;
 setInterval(function(){
     $.get("{% url 'apiGet' %}", function( data ) {
         data=JSON.parse(data);
-        console.log(data[0].prebiehaLoteria);
+        console.log(data);
 
         if(data[0].prebiehaLoteria){
 
@@ -32,7 +33,6 @@ setInterval(function(){
                     zrebOut(data[2].vyzrebovaneCisla[i],i);
                 }
             }
-        console.log(actualNumber);
         lastNumber=data[2].vyzrebovaneCisla[actualNumber];
         if(lastNumber!=undefined) {
             zrebOut(lastNumber,actualNumber);
@@ -43,10 +43,12 @@ setInterval(function(){
         else{
             zreb[0].innerHTML="";
             actualNumber=0;
-            $("#odpocet")[0].innerHTML=(Math.floor((data[1].zrebovanieZacne-Date.now())/1000))
+            $("#odpocet")[0].innerHTML=(Math.floor((data[2].casDoZrebovania2)/1000))
         }
+        offset=(offset+((data[1].zrebovanieZacalo||data[1].zrebovanieZacne)-Date.now()))%1000;
+        console.log(offset);
     });
 
-},1000)
+},1000-offset)
 </script>
 {% endblock %}
