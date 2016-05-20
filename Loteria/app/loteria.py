@@ -19,7 +19,7 @@ def timeOfNextLottery():
     epoch = datetime.utcfromtimestamp(0)
     return (dalsiaLoteria - epoch).total_seconds() * 1000.0
 
-def timeToNextLottery():
+def timeToNextLottery2():
     epoch = datetime.utcfromtimestamp(0)
     return (dalsiaLoteria - datetime.now()).total_seconds() * 1000.0
 
