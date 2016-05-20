@@ -19,12 +19,14 @@ setInterval(function(){
         console.log(data[0].prebiehaLoteria);
 
         if(data[0].prebiehaLoteria){
-            if(data[2].vyzrebovaneCisla.length>actualNumber){
-                for(i=0;i<data[2].vyzrebovaneCisla.length;i++){
-                    zreb.append("<div class='zreb'>" + lastNumber + "</div>");
+
+            if(data[2].vyzrebovaneCisla.length>actualNumber+1){
+                for(var i=0;i<data[2].vyzrebovaneCisla.length;i++){
+                    zreb.append("<div class='zreb'>" + data[2].vyzrebovaneCisla[i] + "</div>");
                     actualNumber++
                 }
             }
+        console.log(actualNumber);
         lastNumber=data[2].vyzrebovaneCisla[actualNumber];
         if(lastNumber!=undefined) {
             zreb.append("<div class='zreb'>" + lastNumber + "</div>");
