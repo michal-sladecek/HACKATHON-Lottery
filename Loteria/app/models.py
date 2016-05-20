@@ -10,7 +10,7 @@ from django.core.validators import int_list_validator
    
 class LoteriaModel(models.Model):
     casZrebovania = models.DateTimeField()
-    vyzrebovanieCisla = models.CharField(max_length=50,validators=[int_list_validator()])
+    vyzrebovaneCisla = models.CharField(max_length=50,validators=[int_list_validator()])
     zrebovanaSuma = models.IntegerField()
 
 class UserData(models.Model):

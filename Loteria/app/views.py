@@ -3,15 +3,20 @@ Definition of views.
 """
 
 from django.shortcuts import render
-from django.http import HttpRequest
+from django.http import HttpRequest,HttpResponseRedirect
 from django.template import RequestContext
 from datetime import datetime
 from .forms import BootstrapAuthenticationForm
+from django.core.urlresolvers import reverse_lazy
+from django.contrib.auth.decorators import login_required
 
 
-def home(request):
+
+def landingPage(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
+    if request.user.is_authenticated():
+        return home(request)
     form = BootstrapAuthenticationForm()
     return render(
         request,
@@ -22,6 +27,9 @@ def home(request):
             'year':datetime.now().year,
         }
     )
+@login_required(redirect_field_name = reverse_lazy('landingPage'))
+def home(request):
+    return render(request,'home.html')
 
 def contact(request):
     """Renders the contact page."""
