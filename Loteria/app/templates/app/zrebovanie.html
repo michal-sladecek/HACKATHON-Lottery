@@ -1,7 +1,7 @@
 {% block zrebovanie %}
 
 <div id="zreb">jichichi</div>
-
+<div id="odpocet"></div>
 
 {% endblock %}
 
@@ -37,7 +37,7 @@ setInterval(function(){
         }
         else{
             actualNumber=0;
-            zreb[0].innerHTML=(Math.floor((data[1].zrebovanieZacne-Date.now())/1000))
+            $("#odpocet").innerHTML=(Math.floor((data[1].zrebovanieZacne-Date.now())/1000))
         }
     });
 

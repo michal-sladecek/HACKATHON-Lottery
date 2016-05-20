@@ -49,3 +49,11 @@ html,body{
     height:100%;
     color:white;
 }
+.zreb{
+    width:30px;
+    height:30px;
+    background-color: yellow;
+    border-radius: 15px;
+    color: black;
+    float: left;
+}
