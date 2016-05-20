@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.contrib.auth.models import User
-from .models import PodanyTicketModel
+from .models import PodanyTicketModel, UserData
 from .konstanty import *
 
 def podajTicket(cisla, user):
@@ -18,6 +18,11 @@ def podajTicket(cisla, user):
         p.podaneCisla = ','.join(map(str, cisla)) 
         p.loteria = dalsiaLoteria
         p.save()
+    return True
 
 def mozePodatTiket(user):
+    data = UserData.objects.get(user=user)
+    if data.pocetTicketov <= 0:
+        return True
+    return False
     
