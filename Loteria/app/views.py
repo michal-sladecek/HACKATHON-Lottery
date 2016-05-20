@@ -62,7 +62,6 @@ def landingPage(request):
     )
 @login_required(login_url = reverse_lazy('landingPage'))
 def home(request):
-    currentLotteryState(request)
     createUserData(request.user)
     return render(request,'app/home.html')
 def contact(request):
