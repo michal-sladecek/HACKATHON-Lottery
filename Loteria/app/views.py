@@ -42,7 +42,7 @@ def currentLotteryState(request):
         minutes,seconds = divmod(remainder,60)
         sprava.append({"casDoZrebovania": {"hours":hours, "minutes":minutes, "seconds":seconds }})
     returnVal = json.dumps(sprava)
-    return JsonResponse(returnVal)
+    return JsonResponse(returnVal,safe=False)
 
 def landingPage(request):
     """Renders the home page."""
@@ -60,10 +60,13 @@ def landingPage(request):
             'year':datetime.now().year,
         }
     )
+
+
 @login_required(login_url = reverse_lazy('landingPage'))
 def home(request):
     createUserData(request.user)
     return render(request,'app/home.html')
+
 def contact(request):
     """Renders the contact page."""
     assert isinstance(request, HttpRequest)
@@ -76,6 +79,8 @@ def contact(request):
             'year':datetime.now().year,
         }
     )
+
+
 def about(request):
     """Renders the about page."""
     assert isinstance(request, HttpRequest)
